@@ -37,7 +37,7 @@ def check_column_name_contract(
     models = get_models(catalog, filenames)
 
     for model in models:
-        model_name = model.node.get("filename")
+        model_name = model.node.metadata.get("name")
         for col in model.node.get("columns", []).values():
             col_name = col.get("name")
             col_type = col.get("type")
@@ -55,7 +55,7 @@ def check_column_name_contract(
             elif re.match(column_pattern, col_name):
                 status_code = 1
                 print(
-                    f"{red(col_name)}in table {model_name}: name matches regex pattern {yellow(column_pattern)} "
+                    f"{red(col_name)} in table {model_name}: name matches regex pattern {yellow(column_pattern)} "
                     f"and is of type {yellow(col_type)} instead of {yellow(dtype_pattern)}."
                 )
 
