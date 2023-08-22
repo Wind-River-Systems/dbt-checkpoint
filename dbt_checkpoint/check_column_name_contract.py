@@ -37,7 +37,7 @@ def check_column_name_contract(
     models = get_models(catalog, filenames)
 
     for model in models:
-        model_name = model.get(filename)
+        model_name = model.filename
         for col in model.node.get("columns", []).values():
             col_name = col.get("name")
             col_type = col.get("type")
