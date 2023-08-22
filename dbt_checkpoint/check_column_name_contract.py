@@ -46,7 +46,7 @@ def check_column_name_contract(
                 if re.match(column_pattern, col_name) is None:
                     status_code = 1
                     print(
-                        f"{red(col_name)} in table {blue(model)}: column is of type {yellow(dtype_pattern)} and "
+                        f"{red(col_name)} in table {model.node.filename[0]}: column is of type {yellow(dtype_pattern)} and "
                         f"does not match regex pattern {yellow(column_pattern)}."
                     )
 
@@ -54,7 +54,7 @@ def check_column_name_contract(
             elif re.match(column_pattern, col_name):
                 status_code = 1
                 print(
-                    f"{red(col_name)}in table {model}: name matches regex pattern {yellow(column_pattern)} "
+                    f"{red(col_name)}in table {model.node.filename[0]}: name matches regex pattern {yellow(column_pattern)} "
                     f"and is of type {yellow(col_type)} instead of {yellow(dtype_pattern)}."
                 )
 
